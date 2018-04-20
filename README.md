@@ -4,4 +4,5 @@
 
 
 可以生成war包，直接用下面的命令启动！！
+cd F:\git\itplatform\target
 java -jar itplatform-0.0.1-SNAPSHOT.war
