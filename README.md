@@ -1,4 +1,3 @@
 # itplatform
-it platform
-
-This is first my git project!
+这是一个基础开发平台
+会将项目中遇到的各种技术难点做成demo放在这个工程里。
