@@ -14,10 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 
+import cn.betatown.itplatform.common.utils.StringUtils;
 import cn.betatown.itplatform.mapper.ProjectMapper;
 import cn.betatown.itplatform.model.Project;
 import cn.betatown.itplatform.service.project.ProjectService;
-import cn.betatown.itplatform.utils.StringUtils;
 import net.sf.mpxj.Duration;
 import net.sf.mpxj.MPXJException;
 import net.sf.mpxj.ProjectFile;
