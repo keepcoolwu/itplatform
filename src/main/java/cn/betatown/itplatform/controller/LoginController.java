@@ -10,7 +10,7 @@ public class LoginController {
 
 	//http://localhost:8080/login
 	@RequestMapping("/login")
-	public ModelAndView getListaUtentiView() {
+	public ModelAndView login() {
 		ModelMap model = new ModelMap();
 		model.addAttribute("name", "Spring Boot");
 		return new ModelAndView("login", model);
