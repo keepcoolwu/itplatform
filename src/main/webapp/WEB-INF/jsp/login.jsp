@@ -1,7 +1,3 @@
-<html>
+hello
 
-<body>
-this is login jsp
-</body>
-
-</html>
+${name}
