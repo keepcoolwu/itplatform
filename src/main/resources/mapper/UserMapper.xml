@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wyait.manage.dao.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.wyait.manage.pojo.User">
+<mapper namespace="cn.betatown.itplatform.security.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="cn.betatown.itplatform.security.pojo.User">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
@@ -29,7 +29,7 @@
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insertSelective" parameterType="com.wyait.manage.pojo.User">
+  <insert id="insertSelective" parameterType="cn.betatown.itplatform.security.pojo.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -108,7 +108,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.wyait.manage.pojo.User">
+  <update id="updateByPrimaryKey" parameterType="cn.betatown.itplatform.security.pojo.User">
     update user
     set username = #{username,jdbcType=VARCHAR},
       mobile = #{mobile,jdbcType=VARCHAR},
@@ -125,7 +125,7 @@
   </update>
 
 
-  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.wyait.manage.pojo.User">
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="cn.betatown.itplatform.security.pojo.User">
     insert into user (id, username, mobile,
     email, password, insert_uid,
     insert_time, update_time, is_del,
@@ -137,7 +137,7 @@
     #{isJob,jdbcType=BIT}, #{mcode,jdbcType=VARCHAR}, #{sendTime,jdbcType=TIMESTAMP}
     )
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wyait.manage.pojo.User">
+  <update id="updateByPrimaryKeySelective" parameterType="cn.betatown.itplatform.security.pojo.User">
     update user
     <set>
       <if test="username != null">
@@ -177,7 +177,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <!--=Start getUsers 分页查询用户列表userSearch-->
-  <select id="getUsers" resultType="com.wyait.manage.entity.UserRoleDTO" >
+  <select id="getUsers" resultType="cn.betatown.itplatform.security.entity.UserRoleDTO" >
     select
     id, username, mobile, email, insert_uid, insert_time, update_time, is_del,is_job
     from user
@@ -218,7 +218,7 @@
   <!--=Start setDelUser 删除用户-->
 
   <!--=Start getUserAndRoles 查询用户及他对应的角色ids-->
-  <resultMap id="getUserRoles" type="com.wyait.manage.entity.UserRolesVO">
+  <resultMap id="getUserRoles" type="cn.betatown.itplatform.security.entity.UserRolesVO">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
@@ -229,7 +229,7 @@
     <result column="is_del" jdbcType="BIT" property="isDel" />
     <result column="is_job" jdbcType="BIT" property="isJob" />
 
-    <collection property="userRoles" ofType="com.wyait.manage.pojo.UserRoleKey">
+    <collection property="userRoles" ofType="cn.betatown.itplatform.security.pojo.UserRoleKey">
       <result column="user_id" property="userId" />
       <result column="role_id" property="roleId" />
     </collection>
@@ -245,7 +245,7 @@
   <!--=End getUserAndRoles 查询用户及他对应的角色ids-->
 
   <!--=Start findUser 根据用户名和密码查找用户-->
-  <select id="findUser" resultType="com.wyait.manage.pojo.User" >
+  <select id="findUser" resultType="cn.betatown.itplatform.security.pojo.User" >
     select
     id, username, mobile, email, insert_uid insertUid, insert_time insertTime, update_time updateTime, is_del isDel,is_job isJob,mcode,send_time sendTime
     from user
@@ -253,7 +253,7 @@
   </select>
   <!--=End findUser 根据用户名和密码查找用户-->
   <!--=Start findUserByMobile 根据手机号获取用户数据-->
-  <select id="findUserByMobile" resultType="com.wyait.manage.pojo.User" >
+  <select id="findUserByMobile" resultType="cn.betatown.itplatform.security.pojo.User" >
     select
     id, username, mobile,password, email, insert_uid insertUid, insert_time insertTime, update_time, is_del,is_job,mcode,send_time sendTime
     from user
@@ -261,7 +261,7 @@
   </select>
   <!--=End findUserByMobile 根据手机号查找用户-->
   <!--=Start findUserByName 根据用户名获取用户数据-->
-  <select id="findUserByName" resultType="com.wyait.manage.pojo.User" >
+  <select id="findUserByName" resultType="cn.betatown.itplatform.security.pojo.User" >
     select
     id, username, mobile, email, insert_uid insertUid, insert_time insertTime, update_time updateTime, is_del isDel,is_job isJob,mcode,send_time sendTime
     from user

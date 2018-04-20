@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.wyait.manage.dao.RoleMapper" >
-  <resultMap id="BaseResultMap" type="com.wyait.manage.pojo.Role" >
+<mapper namespace="cn.betatown.itplatform.security.dao.RoleMapper" >
+  <resultMap id="BaseResultMap" type="cn.betatown.itplatform.security.pojo.Role" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="role_name" property="roleName" jdbcType="VARCHAR" />
     <result column="descpt" property="descpt" jdbcType="VARCHAR" />
@@ -23,7 +23,7 @@
     delete from role
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insertSelective" parameterType="com.wyait.manage.pojo.Role" >
+  <insert id="insertSelective" parameterType="cn.betatown.itplatform.security.pojo.Role" >
     insert into role
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -72,7 +72,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.wyait.manage.pojo.Role" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.betatown.itplatform.security.pojo.Role" >
     update role
     <set >
       <if test="roleName != null" >
@@ -96,7 +96,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.wyait.manage.pojo.Role" >
+  <update id="updateByPrimaryKey" parameterType="cn.betatown.itplatform.security.pojo.Role" >
     update role
     set role_name = #{roleName,jdbcType=VARCHAR},
       descpt = #{descpt,jdbcType=VARCHAR},
@@ -108,7 +108,7 @@
   </update>
 
 
-  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.wyait.manage.pojo.Role" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="cn.betatown.itplatform.security.pojo.Role" >
     insert into role (id, role_name, descpt,
     code, insert_uid, insert_time,
     update_time)
@@ -125,14 +125,14 @@
   <!--=End findList 分页查询角色列表-->
 
   <!--=Start findRoleAndPerms 查询角色列表-->
-  <resultMap id="rolePerms" type="com.wyait.manage.entity.RoleVO" >
+  <resultMap id="rolePerms" type="cn.betatown.itplatform.security.entity.RoleVO" >
     <id column="id" property="id" />
     <result column="role_name" property="roleName"/>
     <result column="code" property="code"/>
     <result column="descpt" property="descpt"/>
     <result column="insert_uid" property="insertUid"/>
     <result column="insert_time" property="insertTime"/>
-    <collection property="rolePerms" ofType="com.wyait.manage.pojo.RolePermissionKey">
+    <collection property="rolePerms" ofType="cn.betatown.itplatform.security.pojo.RolePermissionKey">
       <result  column="role_id" property="roleId"/>
       <result column="permit_id" property="permitId"/>
     </collection>
