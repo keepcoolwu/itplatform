@@ -1,5 +1,5 @@
 server:
-  port: 1111
+    port:1111
 
 spring:
     datasource:
@@ -23,6 +23,14 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
+    mvc:
+        view:
+            suffix:.jsp
+            prefix:/WEB-INF/jsp/
+    thymeleaf:
+        cache:false
+        enabled:false	
+
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: cn.betatown.itplatform.model
