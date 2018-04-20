@@ -1,7 +1,14 @@
 package cn.betatown.itplatform.security.pojo;
 
-public class UserRoleKey {
-    private Integer userId;
+import java.io.Serializable;
+
+public class UserRoleKey implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4776431817059750142L;
+
+	private Integer userId;
 
     private Integer roleId;
 

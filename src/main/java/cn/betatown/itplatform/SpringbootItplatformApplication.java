@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @SpringBootApplication
-@MapperScan(basePackages = { "cn.betatown.itplatform.mapper", "cn.betatown.itplatform.security.dao" })
+//@MapperScan(basePackages = { "cn.betatown.itplatform.mapper", "cn.betatown.itplatform.security.dao" })
 public class SpringbootItplatformApplication extends SpringBootServletInitializer {
 
 	@Override
