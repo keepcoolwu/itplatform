@@ -57,4 +57,6 @@ public interface ProjectService {
 	 */
 	void writeMppFileToDB(String fileLocation, String batchNum, File file);
 
+	List<Project> findAllProject(int pageNum, int pageSize);
+
 }

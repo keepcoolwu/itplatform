@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageHelper;
+
 import cn.betatown.itplatform.mapper.ProjectMapper;
 import cn.betatown.itplatform.model.Project;
 import cn.betatown.itplatform.service.project.ProjectService;
@@ -256,6 +258,13 @@ public class ProjectServiceImpl implements ProjectService {
 			return subList;
 		}
 
+	}
+
+	@Override
+	public List<Project> findAllProject(int pageNum, int pageSize) {
+		// 将参数传给这个方法就可以实现物理分页了，非常简单。
+		PageHelper.startPage(pageNum, pageSize);
+		return projectMapper.selectAllProject();
 	}
 
 }

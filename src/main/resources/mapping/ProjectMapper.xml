@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.winter.mapper.ProjectMapper">
+<mapper namespace="cn.betatown.itplatform.mapper.ProjectMapper">
     <sql id="TABLE_PROJECT">
       PROJECT
     </sql>
+    
+    <resultMap id="BaseResultMap" type="cn.betatown.itplatform.model.Project" >
+	    <id column="projId" property="projId" jdbcType="INTEGER" />
+	    <result column="parentId" property="parentId" jdbcType="INTEGER" />
+	    <result column="level" property="level" jdbcType="INTEGER" />
+	    <result column="taskName" property="taskName" jdbcType="VARCHAR" />
+	    <result column="durationDate" property="durationDate" jdbcType="VARCHAR" />
+	    <result column="startDate" property="startDate" jdbcType="DATE" />
+	    <result column="endDate" property="endDate" jdbcType="DATE" />
+	    <result column="preTask" property="preTask" jdbcType="INTEGER" />
+	    <result column="resource" property="resource" jdbcType="VARCHAR" />
+	    <result column="importTime" property="importTime" jdbcType="DATE" />
+	    <result column="batchNum" property="batchNum" jdbcType="VARCHAR" />
+  	</resultMap>
+  
     <sql id="BASE_COLUMN">
         p.projId, p.parentId, p.level, p.taskName, p.durationDate,p.startDate,p.endDate,p.preTask,p.resource,p.importTime,p.batchNum
     </sql>
     <!-- 插入数据之后返回主键 -->
-    <insert id="addProjectSelective" useGeneratedKeys="true" keyProperty="projId" parameterType="com.winter.model.Project">
+    <insert id="addProjectSelective" useGeneratedKeys="true" keyProperty="projId" parameterType="cn.betatown.itplatform.model.Project">
         INSERT INTO
         <include refid="TABLE_PROJECT"/>
         <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -77,7 +92,7 @@
         </trim>
     </insert>
     <!-- 获取项目 -->
-    <select id="getProjectsByBatchNum" resultType="com.winter.model.Project">
+    <select id="getProjectsByBatchNum" resultType="cn.betatown.itplatform.model.Project">
         SELECT
         <include refid="BASE_COLUMN"/>
         FROM
@@ -85,4 +100,11 @@
         WHERE
         p.batchNum = #{batchNum,jdbcType=VARCHAR}
     </select>
+    
+     <select id="selectAllProject" resultType="cn.betatown.itplatform.model.Project">
+	    select
+	    <include refid="BASE_COLUMN" />
+	    from 
+	    <include refid="TABLE_PROJECT"/> p
+  	</select>
 </mapper>
