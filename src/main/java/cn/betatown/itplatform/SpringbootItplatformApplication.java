@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("cn.betatown.itplatform.mapper")
+@MapperScan(basePackages = { "cn.betatown.itplatform.mapper", "cn.betatown.itplatform.security.mapper" })
 public class SpringbootItplatformApplication {
 
 	public static void main(String[] args) {

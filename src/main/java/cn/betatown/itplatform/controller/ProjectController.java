@@ -23,7 +23,7 @@ public class ProjectController {
 
 	@ResponseBody
 	@RequestMapping(value = "/add/project-file", method = RequestMethod.POST)
-	public ResponseEntity addProjectFile() {
+	public ResponseEntity<String> addProjectFile() {
 		File file = new File("C:\\Users\\donghua.chen\\Desktop\\项目计划导入模板-2018011201 - 副本.mpp");
 		projectService.readMmpFileToDB(file);
 		return ResponseEntity.ok("导入成功!!");
@@ -31,13 +31,14 @@ public class ProjectController {
 
 	@ResponseBody
 	@RequestMapping(value = "/project-file/{batchNum}", method = RequestMethod.GET)
-	public ResponseEntity writeProjectFile(@PathVariable("batchNum") String batchNum) {
+	public ResponseEntity<String> writeProjectFile(@PathVariable("batchNum") String batchNum) {
 		File file = new File("C:\\Users\\donghua.chen\\Desktop\\开办新公司 - 导出模板.mpp");
 		projectService.writeMppFileToDB("C:\\Users\\donghua.chen\\Desktop", batchNum, file);
+
 		return ResponseEntity.ok("导出成功");
 	}
 
-	//http://localhost:1111/project/all/2/100
+	// http://localhost:1111/project/all/2/100
 	@ResponseBody
 	@RequestMapping(value = "/project/all/{pageNum}/{pageSize}", produces = { "application/json;charset=UTF-8" })
 	public Object findAllProject(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
