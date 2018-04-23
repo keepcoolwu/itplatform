@@ -134,6 +134,13 @@
             <AppenderRef ref="Console"/>
             <AppenderRef ref="infoLog"/>
         </logger>
+        
+         <logger name="druid.sql.Statement" level="info"
+                additivity="true">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="infoLog"/>
+        </logger>
+        
         <!-- root logger 配置 -->
         <Root level="info" includeLocation="true">
             <AppenderRef ref="infoLog"/>
