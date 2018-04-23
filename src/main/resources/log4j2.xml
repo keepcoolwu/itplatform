@@ -120,19 +120,22 @@
     <!-- 用来配置LoggerConfig，包含一个root logger和若干个普通logger。 additivity指定是否同时输出log到父类的appender，缺省为true。
         一个Logger可以绑定多个不同的Appender。只有定义了logger并引入的appender，appender才会生效。 -->
     <Loggers> <!-- 第三方的软件日志级别 -->
+    
+    	<!-- 
         <logger name="org.springframework" level="info" additivity="true">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="infoLog"/>
             <AppenderRef ref="warnLog"/>
             <AppenderRef ref="errorLog"/>
         </logger>
+         -->
         <logger name="java.sql.PreparedStatement" level="debug"
                 additivity="true">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="infoLog"/>
         </logger>
         <!-- root logger 配置 -->
-        <Root level="debug" includeLocation="true">
+        <Root level="info" includeLocation="true">
             <AppenderRef ref="infoLog"/>
             <AppenderRef ref="Console"/>
             <AppenderRef ref="errorLog"/>
