@@ -9,3 +9,10 @@ java -jar itplatform-0.0.1-SNAPSHOT.war
 
 
 登录用户：wyait 密码：654321 手机号:12316596566 验证码：111111
+
+
+
+http://localhost:8080/druid/index.html
+admin/admin
+
+
