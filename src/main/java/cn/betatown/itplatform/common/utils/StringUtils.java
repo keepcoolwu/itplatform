@@ -25,6 +25,9 @@ public class StringUtils {
 		
 		logger.info("test log {} end",1);
 		
+		System.out.println("test".indexOf("test"));
+		System.out.println("test".indexOf("cache"));
+		
 	}
 
 }
