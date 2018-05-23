@@ -2,7 +2,7 @@ package cn.betatown.itplatform.solr;
 
 import java.io.Serializable;
 
-public class Person implements Serializable{
+public class Person implements Serializable {
 
 	/**
 	 * 
@@ -14,6 +14,8 @@ public class Person implements Serializable{
 	private String name;
 
 	private String description;
+
+	private String category;
 
 	public String getId() {
 		return id;
@@ -37,6 +39,14 @@ public class Person implements Serializable{
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 }

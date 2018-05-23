@@ -44,14 +44,17 @@ public class SolrJTest {
 		// 构造一篇文档
 
 		List<SolrInputDocument> documents = new ArrayList<SolrInputDocument>();
-		for (int i = 0; i < 10000; i++) {
+		for (int i = 0; i < 1000000; i++) {
 			SolrInputDocument document = new SolrInputDocument();
 			// 往doc中添加字段,在客户端这边添加的字段必须在服务端中有过定义
 			document.addField("id", i + "");
-			document.addField("name", "周新星");
+			document.addField("name", "周新星"+i);
 			document.addField("description", "一个灰常牛逼的军事家");
+			
 			// 获得一个solr服务端的请求，去提交 ,选择具体的某一个solr core
 
+			int c = (i%10);
+			document.addField("category", c);
 			documents.add(document);
 		}
 		
@@ -92,7 +95,7 @@ public class SolrJTest {
 
 		// 参数fq, 给query增加过滤查询条件
 		query.addFilterQuery("id:[0 TO 9]");// id为0-4
-
+		
 		// 给query增加布尔过滤条件
 		// query.addFilterQuery("description:演员"); //description字段中含有“演员”两字的数据
 
@@ -118,25 +121,28 @@ public class SolrJTest {
 		QueryResponse response = solrServer.query(query);
 		// 两种结果获取：得到文档集合或者实体对象
 
+		System.out.println(response.toString());
+		System.out.println(response.getResults());
+		
 		// 查询得到文档的集合
-		SolrDocumentList solrDocumentList = response.getResults();
-		System.out.println("通过文档集合获取查询的结果");
-		System.out.println("查询结果的总数量：" + solrDocumentList.getNumFound());
-		// 遍历列表
-		for (SolrDocument doc : solrDocumentList) {
-			System.out.println(
-					"id:" + doc.get("id") + "   name:" + doc.get("name") + "    description:" + doc.get("description"));
-		}
-
-		// 得到实体对象
-		List<Person> tmpLists = response.getBeans(Person.class);
-		if (tmpLists != null && tmpLists.size() > 0) {
-			System.out.println("通过文档集合获取查询的结果");
-			for (Person per : tmpLists) {
-				System.out.println(
-						"id:" + per.getId() + "   name:" + per.getName() + "    description:" + per.getDescription());
-			}
-		}
+//		SolrDocumentList solrDocumentList = response.getResults();
+//		System.out.println("通过文档集合获取查询的结果");
+//		System.out.println("查询结果的总数量：" + solrDocumentList.getNumFound());
+//		// 遍历列表
+//		for (SolrDocument doc : solrDocumentList) {
+//			System.out.println(
+//					"id:" + doc.get("id") + "   name:" + doc.get("name") + "    description:" + doc.get("description"));
+//		}
+//
+//		// 得到实体对象
+//		List<Person> tmpLists = response.getBeans(Person.class);
+//		if (tmpLists != null && tmpLists.size() > 0) {
+//			System.out.println("通过文档集合获取查询的结果");
+//			for (Person per : tmpLists) {
+//				System.out.println(
+//						"id:" + per.getId() + "   name:" + per.getName() + "    description:" + per.getDescription());
+//			}
+//		}
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -152,8 +158,27 @@ public class SolrJTest {
 		//solr.deleteDocumentById();
 		long t4 = System.currentTimeMillis();
 		System.out.printf(String.format("删除数据,用时%d毫秒\n", t4 - t3));
-		//solr.querySolr();
+		solr.querySolr();
 		long t5 = System.currentTimeMillis();
 		System.out.printf(String.format("查询数据,用时%d毫秒\n", t5 - t4));
+		
+		//http://localhost:8983/solr/first-core/select?q=*:*&stats=true&stats.field=name
+		//http://localhost:8983/solr/first-core/select?q=*:*&facet=true&facet.field=category&facet.mincount=-1
+		//http://localhost:8983/solr/first-core/select?q=*:*&facet=true&facet.field=name&facet.mincount=-1
+		//http://localhost:8983/solr/first-core/select?q=*:*&facet=true&facet.field=category&facet.field=name&facet.mincount=-1
+		//http://localhost:8983/solr/first-core/select?q=*:*&facet=true&facet.field=category&facet.field=name&facet.mincount=-1&fq=category:2
+		
+		
+		//http://localhost:8983/solr/first-core/select?q=*:*&stats=true&stats.field=category&stats.facet=category&stats.mincount=-1
+//		SDR_B
+//		USINESS_PERSPECTIVE -------------solr查询参 数:qt=/select&q=*:*&stats=true&stats.field=standard
+//		_insurance_d&fq=sales_type_s:1+OR+sales_type_s:2+OR+sales_type_s:3&fq=level2code_s:0000000
+//		0000003&fq=statistics_date_type_s:D&fq=version_s:20170512&stats.facet=level3code_s        
+//		[BETATOWN-QJZK-APP] 2018-05-12 21:21:28 INFO  BtSolrTemplateImpl: 44 --------------- SDR_B
+//		USINESS_PERSPECTIVE -------------solr获取连接耗时:0                                              
+//		[BETATOWN-QJZK-APP] 2018-05-12 21:21:33 INFO  BtSolrTemplateImpl: 44 --------------- SDR_B
+//		USINESS_PERSPECTIVE -------------solr执行查询耗时:5256  
+		
+		
 	}
 }

@@ -81,6 +81,7 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/user/sendMsg", "anon");
 		filterChainDefinitionMap.put("/user/login", "anon");
 		filterChainDefinitionMap.put("/home", "anon");
+		filterChainDefinitionMap.put("/log", "anon");
 		/*
 		 * filterChainDefinitionMap.put("/page", "anon");
 		 * filterChainDefinitionMap.put("/channel/record", "anon");
